@@ -88,6 +88,7 @@ length_full_data <- length(unique(df_full_entire$id))
 # # Almost all of these appear to be distinct people
 # # Since when I check for unique combinations of last name, first name, and date of birth
 # # I find there are 11754 unique combinations
+
 # df_full_entire$name_dob <- paste(df_full_entire$name, df_full_entire$dob)
 # length(unique(df_full_entire$name_dob))
 
@@ -125,17 +126,26 @@ length_full_data_trimmed <- length(unique(df_full$id))
 # Thus we end up with 10331 people total in the trimmed full dataset
 # 11757 - 756 - 670 = 10331
 
+
+
+#
+#
 #############################
 
 # Two-year general recidivism dataset created by ProPublica
 
 #############################
+#
+#
+
+
 
 # Reading in ProPublica's two-year general recidivism dataset
 
 df_propub_2_yr_csv <- read.csv('https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years.csv', as.is = TRUE)
 
 length_ProPub_2yr_data <- length(unique(df_propub_2_yr_csv$id))
+
 # 7214 records
 
 # Checking if unique people [this check/code is commented out, but could be run]
@@ -151,7 +161,9 @@ length_ProPub_2yr_data <- length(unique(df_propub_2_yr_csv$id))
 
 ```
 
+# ###########################################
 # ProPublica's Data Processing Mistake 
+# ###########################################
 
 ```{r Figures-start, fig.align='center', fig.cap='Figure 1: Persons by COMPAS Screen Date (7-day bins) - ProPublica Full Dataset'}
 
@@ -167,6 +179,7 @@ length_ProPub_2yr_data <- length(unique(df_propub_2_yr_csv$id))
 #############
 
 # COMPAS-screen-date-figure-full-data
+# We plot full original dataset. 
 
 # ProPublica full dataset - 10331 total
 # [Full minus last 756 people and 670 is_recid=-1]
@@ -183,6 +196,7 @@ gg_full <- ggplot(df_full, aes(as.Date(compas_screening_date))) +
   theme(plot.subtitle = element_text(hjust = 0.5))
 
 gg_full
+# Page 5 of JUL08 2019, of original report...
 
 ```
 
@@ -204,6 +218,7 @@ gg_2_yr <- ggplot(df_propub_2_yr_csv, aes(as.Date(compas_screening_date))) +
   theme(plot.subtitle = element_text(hjust = 0.5))
 
 gg_2_yr
+# Page 6 of 08JUL paper
 
 ```
 
@@ -240,7 +255,7 @@ screen_date_ProPub_Full_2 <-
   grid.arrange(gg_full_recid, gg_full_non_recid,  ncol = 2,
                top = textGrob("Persons by COMPAS Screen Date by Recidivism Status \n [ProPublica Full Dataset]", 
                               gp=gpar(fontsize=12, font=2)))
-
+# Figure 3 Page 7 of report
 
 ```
 
@@ -281,6 +296,7 @@ screen_date_ProPub_2yr_3 <-
   grid.arrange(gg_2_yr_recid, gg_2_yr_non_recid,  ncol = 2,
                top = textGrob("Persons by COMPAS Screen Date by Recidivism Status \n [ProPublica Two-Year Dataset]", 
                               gp=gpar(fontsize=12, font=2)))
+# Figure 4 Page 7
 
 ```
 
@@ -404,7 +420,7 @@ screen_date_Correct_2yr_4 <-
 
 ```
 
-# Recidivism Rates 
+# Recidivism Rates 4 
 
 ```{r}
 
